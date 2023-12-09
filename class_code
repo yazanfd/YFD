@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+public:
+  int USN;
+  string name;
+  int marks[3];
+  float avg;
+
+  Student() : USN(0), name(""), avg(0) {
+    for (int i = 0; i < 3; i++) {
+      marks[i] = 0;
+    }
+  }
+
+  float getAverageOfTopTwoMarks() {
+    int max1 = marks[0], max2 = marks[1];
+    for (int i = 2; i < 3; i++) {
+      if (marks[i] > max1) {
+        max2 = max1;
+        max1 = marks[i];
+      } else if (marks[i] > max2) {
+        max2 = marks[i];
+      }
+    }
+    return (max1 + max2) / 2.0f;
+  }
+};
+
+int main() {
+  Student students[10];
+
+  for (int i = 0; i < 10; i++) {
+    cout << "Enter the USN for student " << i + 1 << ": ";
+    cin >> students[i].USN;
+
+    cout << "Enter the name for student " << i + 1 << ": ";
+    cin.ignore();
+    getline(cin, students[i].name);
+
+    for (int j = 0; j < 3; j++) {
+      cout << "Enter the mark for student " << i + 1 << " in exam " << j + 1 << ": ";
+      cin >> students[i].marks[j];
+    }
+
+    students[i].avg = students[i].getAverageOfTopTwoMarks();
+  }
+
+  cout << "\nStudent Details:\n";
+  for (int i = 0; i < 10; i++) {
+    cout << "USN: " << students[i].USN << ", Name: " << students[i].name << ", Average: " << students[i].avg << endl;
+  }
+  //Yazan Firas Dabour
+  //22215295042
+
+  return 0;
+}
