@@ -1,0 +1,81 @@
+
+#include <iostream>
+
+using namespace std;
+
+
+class Room{
+
+private: float wiath,leagth;
+
+public: 
+Room(){
+    wiath=1;
+    leagth=1;
+}
+Room(float w, float l){
+    wiath=w;
+    leagth=l;
+    
+}
+    void print(){
+        
+        cout<<"Room Details \n";
+        cout<<"wiath="<<wiath<<"\t"<<"leagth="<<leagth<<endl;
+    }
+    Room& operator=(const Room&);
+    Room& operator+=(const Room&);
+    Room& operator+=(const float);
+    void operator ++(void);
+    friend void operator --(Room&);
+
+};
+Room& Room::operator=(const Room& R){
+    wiath=R.wiath;
+ return *this;
+
+}
+Room& Room::operator+=(const Room& R){
+    wiath=wiath+R.wiath;
+    leagth =leagth+R.leagth;
+ return *this;
+
+}
+Room& Room::operator+=(const float f){
+    wiath=wiath+f;
+    leagth =leagth+f;
+ return *this;
+
+}
+
+void Room::operator++(){
+    ++wiath;
+    ++leagth;
+  
+}
+void operator--(Room & R){
+    
+    R.wiath=R.wiath-1;
+    R.leagth=R.leagth-1;
+}
+
+
+
+int main(){
+    
+    Room R1(4.1,5.2),R2(3.75,4.25);
+
+    R1.print();
+    R2.print();
+    R1=R2;
+    R1+=R2;
+    R1+=5.1;
+    ++R1;
+    --R2;
+    
+R1.print();
+R2.print();
+
+    return 0;
+    
+}
