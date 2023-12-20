@@ -45,7 +45,6 @@ Room& Room::operator+=(const float f){
     wiath=wiath+f;
     leagth =leagth+f;
  return *this;
-
 }
 
 void Room::operator++(){
